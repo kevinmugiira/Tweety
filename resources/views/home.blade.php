@@ -12,10 +12,10 @@
             @include('publish_tweet_panel')
 
             <div class="border border-gray-300 rounded-lg">
-                @include('tweet')
-                @include('tweet')
-                @include('tweet')
-                @include('tweet')
+                @foreach($tweets as $tweet)
+                   @include('tweet')
+                @endforeach
+
 
             </div>
         </div>

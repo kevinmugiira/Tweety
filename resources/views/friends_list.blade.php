@@ -9,12 +9,12 @@
      <li class="mb-4">
         <div class="flex items-center text-sm">
             <img
-                src="https://i.pravatar.cc/40"
+                src="https://i.pravatar.cc/40?u=fake@pravatar.com"
                 alt=""
                 class="rounded-full mr-2"
             >
 
-            John Doe
+            Martin Lawrence
 
         </div>
      </li>
