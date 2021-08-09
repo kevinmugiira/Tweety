@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+    return view('home');
+})->name('home');
 
-Route::get('home', [\App\Http\Controllers\TweetController::class,'index']);
-Route::post('/tweets', [\App\Http\Controllers\TweetController::class,'store']);
+
+Route::middleware('auth')->group(function() {
+    Route::get('/tweets', [\App\Http\Controllers\TweetController::class,'index']);
+    Route::post('/tweets', [\App\Http\Controllers\TweetController::class,'store']);
+});
+
