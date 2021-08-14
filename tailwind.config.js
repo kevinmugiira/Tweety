@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const {borderRadius} = require("tailwindcss/lib/plugins");
 
 module.exports = {
     mode: 'jit',
@@ -25,3 +26,7 @@ module.exports = {
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
+
+borderRadius: {
+    lg: '1.25rem'
+}

@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <!--<link rel="stylesheet" href="{{ mix('css/app.css') }}">-->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         @livewireStyles
@@ -37,9 +37,18 @@
             <!-- Page Content -->
         <section class="px-8 mb-6">
             <main class="container mx-auto">
-                @yield('content')
+                <div class="lg:flex lg:justify-between">
+                    <div class="lg:w-32">
+                        @include('sidebar_links')
+                    </div>
+                    <div class="lg:flex-1 lg:mx-10" style="max-width: 700px">
+                        @yield('content')
 
-
+                    </div>
+                    <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4 ">
+                        @include('friends_list')
+                    </div>
+                </div>
             </main>
         </section>
 

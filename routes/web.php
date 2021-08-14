@@ -1,5 +1,8 @@
 <?php
 
+
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-    return view('home');
-})->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/tweets', function () {
+    return view('tweets');
+})->name('tweets');
 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/tweets', [\App\Http\Controllers\TweetController::class,'index']);
+    Route::get('/tweets', [\App\Http\Controllers\TweetController::class,'index'])->name('home');
     Route::post('/tweets', [\App\Http\Controllers\TweetController::class,'store']);
 });
 
+
+Route::get('/profiles/{user}', [\App\Http\Controllers\ProfilesController::class,'show'])->name('profile');
