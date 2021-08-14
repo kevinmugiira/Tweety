@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('components.app')
 
 
 
@@ -11,7 +11,7 @@
 
 
         <img class="rounded-lg mb-2"
-             src="/images/courage(resized).jpg"
+             src="/images/toons2.jpg"
              alt=""
         >
 
