@@ -1,10 +1,4 @@
-@extends('components.app')
-
-
-
-@section('content')
-
-
+<x-app>
 
 
     <header class="mb-4 relative ">
@@ -15,15 +9,20 @@
              alt=""
         >
 
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-6">
             <div>
                 <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
                 <p class="text-sm">Joined {{$user->created_at->diffForHumans()}}</p>
             </div>
 
-            <div>
-               <a href="" class=" rounded-full border border-gray-300 py-2 px-4 text-black text-sm mr-2">Edit Profile</a>
-                <a href="" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-sm">Follow Me</a>
+            <div class="flex">
+
+                <!--since authorization is declared within a policy, it's not necessary to be defined here as it should-->
+                @can('edit', $user)
+                   <a href="{{ $user->path('edit') }}"
+                      class=" rounded-full border border-gray-300 py-2 px-4 text-black text-sm mr-2">Edit Profile</a>
+                @endcan
+                   <x-follow_button :user="$user"></x-follow_button>
 
             </div>
 
@@ -64,5 +63,4 @@
 ])
 
 
-
-@endsection
+</x-app>

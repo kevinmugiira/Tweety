@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use Notifiable;
+    use Notifiable, Followable;
     use TwoFactorAuthenticatable;
 
     /**
@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function tweet()
     {
-        return $this->hasMany(Tweet::class);
+        return $this->hasMany(Tweet::class)->latest();
     }
 
     public function getAvatarAttribute()
@@ -85,18 +85,16 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
-    public function follow(User $user)
+    public function path($append = '')
     {
-        return $this->follows()->save($user);
-    }
-    public function follows()
-    {
-        return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
+        $path = route('profile', $this->name);
+
+        return $append ? "{$path}/{$append}" : $path;
     }
 
 
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
+    /* public function getRouteKeyName()
+     {
+         return 'name';
+     } */
 }
