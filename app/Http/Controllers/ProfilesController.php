@@ -10,7 +10,11 @@ class ProfilesController extends Controller
 {
     public function show(User $user)
     {
+
         return view('profiles.show', compact('user'));
+
+        //checking to see if this can work too
+        #return redirect()->route('profile');
     }
 
     public function edit(User $user)
@@ -22,20 +26,44 @@ class ProfilesController extends Controller
         //this authorization can also be defined within the routes class
         #$this->authorize('edit', $user);
 
-        return view('profiles.edit', compact($user));
+
+        return view('profiles.edit', compact('user'));
     }
 
     public function update(User $user)
     {
+        #dd(\request('avatar'));
        $attributes = \request()->validate([
-            'username' => ['string', 'required', 'max:255', 'alpha_dash', Rule::unique('users')->ignore($user)],
+            'username' => [
+                'string',
+                'required',
+                'max:255',
+                'alpha_dash',
+                Rule::unique('users')->ignore($user),
+                ],
             'name' => ['string', 'required', 'max:255'],
-            'email' => ['string', 'required', 'email', 'max:255', Rule::unique('users')->ignore($user)],
-            'password' => ['string', 'required', 'min:8', 'max:255', 'confirmed']
+            'avatar' => ['required','file'],
+            'email' => [
+                'string',
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user),
+                ],
+            'password' => [
+                'string',
+                'required',
+                'min:8',
+                'max:255',
+                'confirmed',
+                ],
         ]);
+
+       $attributes['avatar'] = \request('avatar')->store('avatars');
 
        $user->update($attributes);
 
-       return redirect($user->path());
+       #return redirect($user->path());
+       return redirect()->route('profile', compact('user'));
     }
 }

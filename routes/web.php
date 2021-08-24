@@ -20,9 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/tweets', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('tweets', function () {
     return view('tweets');
-})->name('tweets');
+})->name('dashboard');
 
 
 Route::middleware('auth')->group(function() {
@@ -35,4 +35,5 @@ Route::middleware('auth')->group(function() {
 
 
 Route::get('/profiles/{user:username}', [\App\Http\Controllers\ProfilesController::class,'show'])->name('profile');
+
 

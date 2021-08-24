@@ -5,6 +5,10 @@
 
 <ul>
 
+    <!-- below statement from foreach to forelse,
+    to allow display of list tag statement 'no friends',
+    when a user has no friends -->
+
     @forelse(auth()->user()->follows as $user)
      <li class="mb-4">
         <div>

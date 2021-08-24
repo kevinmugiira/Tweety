@@ -17,11 +17,15 @@
 
             <div class="flex">
 
-                <!--since authorization is declared within a policy, it's not necessary to be defined here as it should-->
+                <!--since authorization is declared within a policy, it's not necessary to define it here as it should-->
+                <!-- if(auth()->user()->is($user)) -->
+                <!--or-->
+                <!-- if(current_user()->is($user) -->
                 @can('edit', $user)
                    <a href="{{ $user->path('edit') }}"
                       class=" rounded-full border border-gray-300 py-2 px-4 text-black text-sm mr-2">Edit Profile</a>
                 @endcan
+                <!-- endif -->
                    <x-follow_button :user="$user"></x-follow_button>
 
             </div>
