@@ -42,7 +42,7 @@ class ProfilesController extends Controller
                 Rule::unique('users')->ignore($user),
                 ],
             'name' => ['string', 'required', 'max:255'],
-            'avatar' => ['required','file'],
+            'avatar' => ['file'],
             'email' => [
                 'string',
                 'required',
@@ -59,7 +59,11 @@ class ProfilesController extends Controller
                 ],
         ]);
 
-       $attributes['avatar'] = \request('avatar')->store('avatars');
+       // the below if statement was added after making uploading the avatar optional
+        //it checks whether the avatar is present and if so, it then stores it
+       if (\request('avatar')) {
+           $attributes['avatar'] = \request('avatar')->store('avatars');
+       }
 
        $user->update($attributes);
 

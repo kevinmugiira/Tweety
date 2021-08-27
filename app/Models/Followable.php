@@ -29,12 +29,17 @@ trait Followable
 
     public function toggleFollow(User $user)
     {
+        /*
         if($this->following($user))
         {
             return $this->unfollow($user);
         }
 
         return $this->follow($user);
+        */
+
+        //the above can be broken down using a dedicated toggle method as done below
+        $this->follows()->toggle($user);
 
 
     }

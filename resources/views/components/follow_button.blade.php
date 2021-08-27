@@ -1,7 +1,11 @@
 
 @unless (current_user()->is($user))
 
-<form method="POST" action="/profiles/{{$user->name}}/follow">
+    <!--or swap the action method with this instead of the named route
+      action="/profiles/{{$user->username}}/follow"-->
+<form method="POST"
+      action="{{route('follow', $user->username)}}"
+    >
 
     @csrf
     <button

@@ -70,7 +70,7 @@ class User extends Authenticatable
     {
         //since an avatar slot has been created and the image path stored in the database. This is no longer needed
         #return "https://i.pravatar.cc/200?u=" .$this->email;
-        return asset($value);
+        return asset($value ?: '/images/avat.jpg');
     }
 
     public function timeline()
@@ -97,7 +97,7 @@ class User extends Authenticatable
     }
 
     //added this attribute mutator to prevent it from remembering the hashed password
-    //logging in was refusing on updating the user's profile. This solved the problem
+    //logging in was not going through on updating the user's profile. 'This solved the problem'
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
