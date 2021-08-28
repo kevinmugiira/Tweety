@@ -11,7 +11,10 @@ class ProfilesController extends Controller
     public function show(User $user)
     {
 
-        return view('profiles.show', compact('user'));
+        return view('profiles.show', [
+            'user' => $user,
+            'tweets' => $user->tweets()->paginate(50),
+        ]);
 
         //checking to see if this can work too
         #return redirect()->route('profile');

@@ -6,12 +6,14 @@
                         name="body"
                         class="w-full"
                         placeholder="What's up doc?"
+                        required
+                        autofocus
 
                     ></textarea>
 
         <hr class="my-4">
 
-        <footer class="flex justify-between">
+        <footer class="flex justify-between items-center">
             <img
                 src="{{auth()->user()->avatar}}"
                 alt="your avatar"
@@ -19,14 +21,16 @@
                 width="50"
                 height="50"
             >
-            <button type="submit" class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white">Publish</button>
+            <button type="submit" class="bg-blue-500  hover:bg-blue-600 rounded-lg shadow py-2 px-2 text-white text-sm">Publish</button>
 
         </footer>
 
     </form>
 
-    @error('body')
-         <p class="text-red-500 text-sm mt-2">{{$message}}</p>
-    @enderror
+    <!-- added validation for the publishing panel
+    error('body')
+         <p class="text-red-500 text-sm mt-2"> $message}}</p>
+    enderror
+    -->
 
 </div>

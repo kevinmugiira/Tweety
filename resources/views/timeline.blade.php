@@ -11,7 +11,8 @@
             <p class="p-4"> No tweets yet!</p>
         @endforelse
 
-
+        <!-- this allows pagination
+         $tweets->links() }} -->
     </div>
 
 
